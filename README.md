@@ -3,5 +3,9 @@
 
 A lightweight Android chart library.
 
-![Histogram](./art/histogram.png)
-![Line Chart](./art/line.png)
+- [x] Histogram
+    - [ ] Highlight Regions
+- [x] Line Chart
+    - [x] Scrubbing
+    - [ ] Highlight Regions
+- [ ] Pie Chart
