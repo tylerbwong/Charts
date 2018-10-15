@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="HistogramView">
+        <attr name="barColor" format="color"/>
+    </declare-styleable>
+    <declare-styleable name="LineChartView">
+        <attr name="lineColor" format="color"/>
+        <attr name="strokeWidth" format="float"/>
+        <attr name="pathCornerRadius" format="float"/>
+    </declare-styleable>
+</resources>
