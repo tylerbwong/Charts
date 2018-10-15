@@ -7,5 +7,6 @@
         <attr name="lineColor" format="color"/>
         <attr name="strokeWidth" format="float"/>
         <attr name="pathCornerRadius" format="float"/>
+        <attr name="isScrubEnabled" format="boolean"/>
     </declare-styleable>
 </resources>

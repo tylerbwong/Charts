@@ -10,6 +10,8 @@ import android.graphics.Path
 import android.util.AttributeSet
 import android.view.MotionEvent
 
+typealias OnScrubListener = (Float, Float) -> Unit
+
 class LineChartView : ChartView {
 
     private val scrubberPaint = Paint().apply {
@@ -23,6 +25,14 @@ class LineChartView : ChartView {
     private var xPos = 0f
     private var yPos = 0f
     private var isScrubbing = false
+
+    var onScrubListener: OnScrubListener? = null
+
+    var isScrubbingEnabled = true
+        set(value) {
+            field = value
+            invalidate()
+        }
 
     override var data: List<Float> = listOf()
         set(value) {
@@ -81,6 +91,7 @@ class LineChartView : ChartView {
             color = getColor(R.styleable.LineChartView_lineColor, 0)
             strokeWidth = getFloat(R.styleable.LineChartView_strokeWidth, DEFAULT_STROKE_WIDTH)
             pathCornerRadius = getFloat(R.styleable.LineChartView_pathCornerRadius, DEFAULT_CORNER_RADIUS)
+            isScrubbingEnabled = getBoolean(R.styleable.LineChartView_isScrubEnabled, true)
             recycle()
         }
     }
@@ -93,7 +104,7 @@ class LineChartView : ChartView {
     override fun onDraw(canvas: Canvas) {
         canvas.drawPath(path, paint)
 
-        if (isScrubbing) {
+        if (isScrubbingEnabled && isScrubbing && xPos >= paddingLeft && xPos <= width - paddingRight) {
             canvas.drawLine(xPos, halfChartInset, xPos, height.toFloat() - halfChartInset, scrubberPaint)
         }
     }
@@ -101,6 +112,11 @@ class LineChartView : ChartView {
     @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(event: MotionEvent): Boolean {
         super.onTouchEvent(event)
+
+        if (!isScrubbingEnabled) {
+            return true
+        }
+
         when (event.action) {
             MotionEvent.ACTION_DOWN -> event.startScrubbing()
             MotionEvent.ACTION_MOVE -> event.startScrubbing()
@@ -113,6 +129,7 @@ class LineChartView : ChartView {
         val index = actionIndex
         xPos = getX(index)
         yPos = getY(index)
+        onScrubListener?.invoke(xPos, yPos)
         isScrubbing = true
         invalidate()
     }

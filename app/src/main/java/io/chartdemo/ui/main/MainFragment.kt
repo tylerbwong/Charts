@@ -39,6 +39,7 @@ class MainFragment : Fragment() {
             }
         })
         seekBar.progress = 50
+        lineChart.onScrubListener = { xPos, yPos -> scrubLabel.text = "X: $xPos Y: $yPos" }
     }
 
     private fun updateCharts() {
