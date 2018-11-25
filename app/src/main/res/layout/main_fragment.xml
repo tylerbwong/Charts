@@ -1,63 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         tools:context=".ui.main.MainFragment">
 
     <io.charts.HistogramView
             android:id="@+id/histogram"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="150dp"
             android:padding="16dp"
-            app:barColor="@color/colorPrimary"
-            app:layout_constraintBottom_toTopOf="@id/scrubLabel"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:barColor="@color/colorPrimary"/>
 
     <TextView
             android:id="@+id/scrubLabel"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toTopOf="@id/lineChart"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/histogram"/>
+            android:padding="16dp"
+            android:textSize="16sp"/>
 
     <io.charts.LineChartView
             android:id="@+id/lineChart"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="150dp"
             android:padding="16dp"
-            app:lineColor="@color/colorPrimary"
-            app:layout_constraintBottom_toTopOf="@id/randomizeButton"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/scrubLabel"/>
+            app:lineColor="@color/colorPrimary"/>
 
     <SeekBar
             android:id="@+id/seekBar"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@id/randomizeButton"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/lineChart"/>
+            android:padding="16dp"/>
 
     <Button
             android:id="@+id/randomizeButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Randomize"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/seekBar"/>
+            android:layout_gravity="center_horizontal"
+            android:text="Randomize"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
